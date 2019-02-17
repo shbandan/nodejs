@@ -23,19 +23,6 @@ app.get('/healthz', function (req, res) {
 });
 
 
-app.get('/cancer', function (req, res) {
-   healthy=false;
-   res.send('Killed ' + os.hostname());
-});
-
-
-
 app.listen(PORT,'0.0.0.0');
-console.log('Running on http://localhost:' + PORT);
-
-
-process.on('SIGTERM', function () {
-    console.log('Cleanup.....');
-    process.exit();
-});
+console.log('Application running on port: ' + PORT);
 
