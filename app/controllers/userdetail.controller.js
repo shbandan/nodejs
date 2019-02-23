@@ -58,9 +58,48 @@ exports.findOne = (req,res) => {
 };
 
 exports.update = (req,res) => {
-
+    UserDetail.findByIdAndUpdate(req.params.userid, {
+        username: req.body.username,
+        password: req.body.password,
+        fname: req.body.fname,
+        lname: req.body.lname
+    }, {new: true})
+    .then(userdeta => {
+        if(!userdeta) {
+            return res.status(404).send({
+                message: "Request user detail not found for id: " + req.params.userid
+            });
+        }
+        res.send(userdeta);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Request user detail not found for id: " + req.params.userid
+            });                
+        }
+        return res.status(500).send({
+            message: "Error while updating user detail with id " + req.params.userid
+        });
+    });
 };
 
 exports.delete = (req,res) => {
-    
+    UserDetail.findByIdAndRemove(req.params.userid)
+    .then(userdeta => {
+        if(!userdeta) {
+            return res.status(404).send({
+                message: "Request user detail not found for id: " + req.params.userid
+            });
+        }
+        res.send({message: "User detail deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Request user detail not found for id: " + req.params.userid
+            });                
+        }
+        return res.status(500).send({
+            message: "Requested user detail could not delete with id:  " + req.params.userid
+        });
+    });
 };
