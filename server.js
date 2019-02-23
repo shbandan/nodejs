@@ -12,6 +12,8 @@ app.use(bodyParse.json());
 
 
 mongoose.connect(dbConfig.url, {
+    user: 'admin',
+    pass: 'mongopwd',
     useNewUrlParser: true
 }).then(() => {
     console.log('Database successfully connected');
