@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 app.use(bodyParse.urlencoded({extended : true}));
 app.use(bodyParse.json());
 
-
+var mongoUrl = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
 mongoose.connect(dbConfig.url, {
     user: 'admin',
     pass: 'mongopwd',
@@ -24,7 +24,7 @@ mongoose.connect(dbConfig.url, {
 
 
 app.get('/', (req,res) => {
-    res.json({"message": "Welcome to retail application demo"});
+    res.json({"message": mongoUrl});
 });
 
 require('./app/routes/user.routes.js') (app);
