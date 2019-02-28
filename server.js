@@ -10,8 +10,8 @@ mongoose.Promise = global.Promise;
 app.use(bodyParse.urlencoded({extended : true}));
 app.use(bodyParse.json());
 
-var mongoUrl = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
-var mongoUrlLabel = "";
+var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
+var mongoURLLabel = "";
 
 if (mongoURL == null) {
     var mongoHost, mongoPort, mongoDatabase, mongoPassword, mongoUser;
