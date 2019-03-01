@@ -51,7 +51,7 @@ if (mongoURL == null) {
     if (mongoHost && mongoPort && mongoDatabase) {
       mongoURLLabel = mongoURL = 'mongodb://';
       if (mongoUser && mongoPassword) {
-        mongoURL += 'admin' + ':' + 'mongopwd' + '@';
+        //mongoURL += 'admin' + ':' + 'mongopwd' + '@';
       }
       // Provide UI label that excludes user id and pw
       mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
@@ -61,8 +61,8 @@ if (mongoURL == null) {
 
   console.log(mongoURL);
   mongoose.connect(mongoURL, {
-      //user: 'admin',
-      //pass: 'mongopwd',
+      user: 'admin',
+      pass: 'mongopwd',
       useNewUrlParser: true
   }).then(() => {
       console.log('Database successfully connected');
