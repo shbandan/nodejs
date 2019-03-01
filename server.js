@@ -12,7 +12,7 @@ app.use(bodyParse.json());
 
 var dbName = "/credit-card-detail";
 var connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + dbName;
-
+console.log(process.env);
 console.log(connection_string);
   mongoose.connect(connection_string, {
       useNewUrlParser: true
