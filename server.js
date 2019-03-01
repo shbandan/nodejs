@@ -55,7 +55,7 @@ if (mongoURL == null) {
       }
       // Provide UI label that excludes user id and pw
       mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-      mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+      mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase + '?authSource=admin';
     }
   }
 
