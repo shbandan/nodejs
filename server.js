@@ -51,7 +51,7 @@ if (mongoURL == null) {
     if (mongoHost && mongoPort && mongoDatabase) {
       mongoURLLabel = mongoURL = 'mongodb://';
       if (mongoUser && mongoPassword) {
-        mongoURL += mongoUser + ':' + mongoPassword + '@';
+        mongoURL += 'admin' + ':' + 'mongopwd' + '@';
       }
       // Provide UI label that excludes user id and pw
       mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
