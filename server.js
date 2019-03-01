@@ -9,16 +9,12 @@ var port = process.env.PORT || 8080;
 mongoose.Promise = global.Promise;
 app.use(bodyParse.urlencoded({extended : true}));
 app.use(bodyParse.json());
-var url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;
 
-// if OPENSHIFT env variables are present, use the available connection info:
-if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-    url = process.env.OPENSHIFT_MONGODB_DB_URL +
-    process.env.OPENSHIFT_APP_NAME;
-}
+var dbName = "/credit-card-detail";
+var connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + dbName;
 
-console.log(url);
-  mongoose.connect(url, {
+console.log(connection_string);
+  mongoose.connect(connection_string, {
       useNewUrlParser: true
   }).then(() => {
       console.log('Database successfully connected');
